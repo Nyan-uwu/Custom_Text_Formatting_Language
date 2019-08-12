@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<style> </style>
 	<script src="Script/script.js"></script>
 	<link href="Style/style.css" rel="stylesheet">
 </head>
 <body>
 	<div class="div_input">
-		<textarea rows="5" cols="80" onchange="outputtext(this.value);" value="#Hello, World!"></textarea>
+		<input id="text_input" style="width:750px;" type="text"
+			value="$[border: 1px dashed black; color: red;]This Is My Text!//$[color: green;]But Im Green.//And Back To Red!."
+		/><button type="submit" onclick="outputtext(document.getElementById('text_input').value);">Format</button>
 	</div>
 	<div class="div_output" id="div_output"></div>
+
+	<!-- Script Onload -->
+	<script>outputtext(document.getElementById("text_input").value);</script>
 </body>
 </html>
