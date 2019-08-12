@@ -5,13 +5,16 @@
 
 <!-- Input Button -->
 input[type="text"] {
-    width: 200px;
-    height: 20px;
-    padding-right: 50px;
+	width: 200px;
+	height: 20px;
+	padding-right: 50px;
 }
 
-input[type="submit"] {
-    margin-left: -50px;
-    height: 20px;
-    width: 50px;
+ {
+	margin-left: -50px;
+	height: 20px;
+	width: 50px;
+	border:1px solid blue;
+	background:blue;
+	color:white;
 }

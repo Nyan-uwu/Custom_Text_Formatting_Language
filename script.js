@@ -9,6 +9,16 @@ function outputtext(input) {
 	 let output = "";
 	 let char = input[i];
 
+	 let escaped = false;
+
+	 let showError = false;
+	 let error = "";
+	 let errors = {
+	 	syntax: {
+	 		missing_array_pair: "<p>$ Found without Pairing '[]';</p><p>Consider Removing '$', or add pairing '[]';</p>"
+	 	}
+	 };
+
 	 this.getStyling = function() {
 		falseReturn = [false, null];
 
@@ -48,53 +58,67 @@ function outputtext(input) {
 				}
 			}
 		} else {
-			output = "<div style='display: flex;'><div>";
-			i++;
+			error = errors.syntax.missing_array_pair;
+			showError = true;
 		}
 	 } else {
 		output = "<div style='display: flex;'><div>";
 	 }
 
-	 while (i < input.length) {
+	 while (i < input.length && showError != true) {
 		char = input[i];
 		// console.log(char);
-
-		switch(char) {
-			case "$":
-				var style = this.getStyling();
-				if (style[0] == true) {
-					output += style[1];
-				}
-				break;
-			case "/":
-				i++; char = input[i];
-				if (char == "/") {
-					output += "&nbsp</div>";
-					i++; char = input[i];
-					if (char == "$") {
-						var style = this.getStyling();
-						if (style[0] == true) {
-							output += style[1];
-						} else {
-							output += "<div>";
-						}
+		if (escaped != true) {
+			switch(char) {
+				case "$":
+					var style = this.getStyling();
+					if (style[0] == true) {
+						output += "</div>&nbsp;" + style[1];
 					} else {
-						output += "<div>" + char;
+						error = errors.syntax.missing_array_pair;
+						showError = true;
 					}
-				}
-			break;
-			default:
-				output += char;
-			break;
+					break;
+				case "/":
+					i++; char = input[i];
+					if (char == "/") {
+						output += "</div>&nbsp;";
+						i++; char = input[i];
+						if (char == "$") {
+							var style = this.getStyling();
+							if (style[0] == true) {
+								output += style[1];
+							} else {
+								output += "<div>";
+							}
+						} else {
+							output += char;
+						}
+					}
+				break;
+				case "\\":
+					escaped = true;
+				break;
+				default:
+					output += char;
+				break;
+			}
+		} else {
+			output += char;
+			escaped = false;
 		}
-
 		// Increment
 		i++;
 	 }
 
 
 	// Apply Output
-	output += "</div></div>";
-	console.log("output: " + output)
-	document.getElementById("div_output").innerHTML = output;
+	if (showError != true) {
+		output += "</div></div>";
+		console.log("output: " + output);
+		document.getElementById("div_output").innerHTML = output;
+	} else {
+		console.log(error);
+		document.getElementById("div_output").innerHTML = error;
+	}
 }
