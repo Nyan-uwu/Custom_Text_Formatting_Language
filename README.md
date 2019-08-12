@@ -8,9 +8,9 @@ $  - Tells the formatter that the following items inside of the '[]', will be CS
 // - Will End the last formatting option set, going back to the previous $[] defined.
 
 # Examples
-- Basic Colouring.
-$[color: green;]This Whole String Will Be Green!
+- Basic Colouring
+. $[color: green;]This Whole String Will Be Green!
 
 -Borders
-$[border: 1px dashed black; color: red;]Red Text Inside A Black Border?!
-$[border: 1px solid black; color: blue;]Blue Text, Black Border,$[border: 1px dashed black;]A Border In A Border???//Thats Impressive!
+. $[border: 1px dashed black; color: red;]Red Text Inside A Black Border?!
+. $[border: 1px solid black; color: blue;]Blue Text, Black Border,$[border: 1px dashed black;]A Border In A Border???//Thats Impressive!
