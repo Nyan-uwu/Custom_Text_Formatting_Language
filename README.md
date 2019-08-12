@@ -4,7 +4,7 @@ Basic Text Formatter for HTML Inputs.
 The Formatter Currently allows you to used CSS Directly on your text to offer extra customization to a simple input string
 
 # Syntax
-$  - Tells the formatter that the following items inside of the '[]', will be CSS Style formatting.
+$  - Tells the formatter that the following items inside of the '[]', will be CSS Style formatting.  
 // - Will End the last formatting option set, going back to the previous $[] defined.
 
 # Examples
